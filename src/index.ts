@@ -12,6 +12,7 @@ import file from "./routes/file.js";
 // No need to call `config()` for es6
 import "dotenv/config";
 import { readFile } from "./utils/file.js";
+import logout from "./routes/logout.js";
 
 
 const app = new Hono<Env>();
@@ -33,6 +34,7 @@ app.use("*", async (c, next) => {
 });
 
 app.route("/login", login);
+app.route("/logout", logout);
 app.route("/register", register);
 
 // TODO: List the endpoints that require authentication
