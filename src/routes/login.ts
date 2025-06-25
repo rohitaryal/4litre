@@ -18,7 +18,7 @@ login.post("/", loginValidator, async (c) => {
 
     try {
         // Check if user exists
-        const result = await sql`SELECT * FROM users WHERE email=${json.email} AND hashed_password=${json.password}`;
+        const result = await sql`SELECT * FROM users WHERE email=${json.email} AND hashed_password=${json.password} AND username=${json.username}`;
 
         if (result.length > 0) {
             // Random uuid to be used as session. Learnt from `Hevy` :)
@@ -30,9 +30,9 @@ login.post("/", loginValidator, async (c) => {
             // Set session to cookie
             c.res.headers.set("Set-Cookie", setCookie("session", uuid, {
                 httpOnly: true,
-                expires: new Date('2025-12-12'),
+                expires: new Date(Date.now() + 86400 * 1000 * 10), // 10 days from now
             }));
-            return c.redirect("/", 303);
+            return c.redirect("/");
         }
 
         return c.json({ error: "Invalid username or password" }, 401);
