@@ -1,22 +1,51 @@
 import { serve } from "@hono/node-server";
 import { Hono } from "hono";
 import { logger } from "hono/logger";
-import { checkAuth } from "./middleware/auth.js";
+import { checkAuth, checkIfBannedClient } from "./middleware/auth.js";
+import postgres, { type Sql } from "postgres";
+import type { Env } from "./types/env.js";
 
-const app = new Hono();
+
+// No need to call `config()` for es6
+import "dotenv/config";
+import register from "./routes/register.js";
+import login from "./routes/login.js";
+import { cors } from "hono/cors";
+
+
+const app = new Hono<Env>();
+app.use(cors())
 app.use(logger());
+app.use(checkIfBannedClient);
 
-app.get("/register", async (c) => {
-    c.text("FUCK YOU", 404);
+
+const sql: Sql = postgres({
+    host: process.env.DB_HOST || "localhost",
+    port: Number(process.env.DB_PORT) || 5432,
+    username: process.env.DB_USERNAME,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_DATABASE,
+});
+// Make SQL context available everywhere
+app.use("*", async (c, next) => {
+    c.set("sqlContext", sql)
+    await next();
 });
 
-app.get("/login", async (c) => {
-    c.text("FUCK YOU LOGIN", 404)
-});
 
-// TODO: List then endpoints that require authentication
+app.route("/login", login);
+app.route("/register", register);
+
+
+// TODO: List the endpoints that require authentication
 //       below this middleware usage and if not, place above me.
 app.use(checkAuth);
+
+
+app.all("/", async (c) => {
+    return c.text("Welcome!");
+});
+
 
 serve({
     port: 8848,
