@@ -1,6 +1,7 @@
 import { createMiddleware } from "hono/factory";
 import { getCookie } from "../utils/cookie.js";
 import type { Env } from "../types/env.js";
+import type { AuthorizedUser } from "../types/user.js";
 
 // Check for authentication
 const checkAuth = createMiddleware<Env>(async (c, next) => {
@@ -15,10 +16,16 @@ const checkAuth = createMiddleware<Env>(async (c, next) => {
     const sql = c.get("sqlContext");
     try {
         const activeSessions = await sql`SELECT username FROM sessions WHERE session_token=${session}`;
-        if (activeSessions.length > 0)
-            return await next();
+        if (activeSessions.length == 0)
+            return c.redirect("/login")
 
-        return c.redirect("/login")
+        const userResult = await sql`SELECT * FROM users WHERE username=${activeSessions[0].username}`
+
+        // TODO: Putting forced type here, its missing other types.
+        //       Add them all once the database is ready
+        c.set("userContext", userResult[0] as AuthorizedUser);
+
+        return await next();
     } catch (err) {
         return c.json({ error: "Something went wrong!" })
     }
