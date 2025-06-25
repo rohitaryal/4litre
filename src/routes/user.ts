@@ -2,6 +2,8 @@ import { Hono } from "hono";
 import type { Env } from "../types/env.js";
 import { userPatchValidator } from "../middleware/validators.js";
 import { hash } from "../utils/hash.js";
+import { readFileSync } from "node:fs";
+import { readFile } from "../utils/file.js";
 
 const user = new Hono<Env>();
 
@@ -16,6 +18,8 @@ user.patch("/", userPatchValidator, async (c) => {
     const user = c.get("userContext");
 
     const json = await c.req.json();
+
+    // TODO: Ask for current password to change email and password
 
     if (json.email) {
         try {
@@ -66,6 +70,5 @@ user.get("/:username", async (c) => {
         return c.json({ error: "Something went wrong!" }, 500);
     }
 });
-
 
 export default user;
