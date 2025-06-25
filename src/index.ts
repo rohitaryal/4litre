@@ -11,6 +11,8 @@ import "dotenv/config";
 import register from "./routes/register.js";
 import login from "./routes/login.js";
 import { cors } from "hono/cors";
+import user from "./routes/user.js";
+import file from "./routes/file.js";
 
 
 const app = new Hono<Env>();
@@ -40,6 +42,9 @@ app.route("/register", register);
 // TODO: List the endpoints that require authentication
 //       below this middleware usage and if not, place above me.
 app.use(checkAuth);
+
+app.route("/user", user);
+app.route("/file", file);
 
 // For now I am putting `.all()` because while testing through curl
 // and using `-L` to follow redirect, it sends post even after the redirect
