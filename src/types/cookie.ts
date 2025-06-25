@@ -1,3 +1,4 @@
+// Options for making a cookie
 export interface CookieOptions {
     // Controls how cookie is handled with cross site requests.
     sameSite?: "Strict" | "Lax" | "None"
