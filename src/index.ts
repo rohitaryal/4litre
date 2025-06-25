@@ -41,7 +41,9 @@ app.route("/register", register);
 //       below this middleware usage and if not, place above me.
 app.use(checkAuth);
 
-
+// For now I am putting `.all()` because while testing through curl
+// and using `-L` to follow redirect, it sends post even after the redirect
+// which is not what browsers do, so keep this here untill we start testing on frontend
 app.all("/", async (c) => {
     return c.text("Welcome!");
 });
