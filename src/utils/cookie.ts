@@ -8,7 +8,7 @@ const getCookie = (name: string, cookie: string): string | Error => {
     const splittedCookie = cookie.split("; ");
 
     for (const cookie_item of splittedCookie) {
-        if (cookie_item.startsWith(cookie_item)) {
+        if (cookie_item.startsWith(name)) {
             return cookie_item.slice(name.length)
         }
     }
