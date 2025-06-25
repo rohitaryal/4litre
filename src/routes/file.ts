@@ -18,9 +18,10 @@ file.get("/:filestatus?", async (c) => {
     }
 });
 
+// Don't get confused, this is delete method
 file.delete("/:fileid", async (c) => {
     // TODO: Add the delete thing, and make sure to check if owner owns that file first
-})
+});
 
 file.get("/info/:fileid", async (c) => {
     const user = c.get("userContext");
