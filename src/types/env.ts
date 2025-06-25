@@ -1,5 +1,5 @@
 import type { Sql } from "postgres";
-import type { AuthorizedUser } from "./user.js";
+import type { UserContext } from "./user.js";
 
 // Represents environment variable
 export interface EnvironmentVariables {
@@ -18,7 +18,7 @@ export interface EnvironmentVariables {
 // For Hono
 export type Env = {
     Variables: {
-        userContext: AuthorizedUser,
+        userContext: UserContext,
         sqlContext: Sql
     },
     Bindings: EnvironmentVariables,
