@@ -16,9 +16,9 @@ const getCookie = (name: string, cookie: string): string | Error => {
     return ""
 }
 
-const setCookie = (name: string, value: string, options?: CookieOptions): string | Error => {
+const setCookie = (name: string, value: string, options?: CookieOptions): string => {
     if (!name || !value)
-        return Error("setCookie(): Some arguments are missing");
+        throw Error("setCookie(): Some arguments are missing");
 
     let cookie = `${name}=${value};`;
 
