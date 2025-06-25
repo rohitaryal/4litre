@@ -5,6 +5,7 @@ import { setCookie } from "../utils/cookie.js";
 import { randomUUID } from "node:crypto";
 import { redirectIfLoggedIn } from "../middleware/auth.js";
 import { hash } from "../utils/hash.js";
+import { readFile } from "../utils/file.js";
 
 const login = new Hono<Env>();
 login.use(redirectIfLoggedIn);
@@ -40,8 +41,8 @@ login.post("/", loginValidator, async (c) => {
     }
 });
 
-login.get("/", async (c) => {
-    return c.text("Looks like you are not logged in!");
-});
+login.get("/", (c) => {
+    return c.html(readFile("./src/static/login.html"))
+})
 
 export default login;
