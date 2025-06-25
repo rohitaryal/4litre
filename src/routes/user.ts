@@ -2,8 +2,6 @@ import { Hono } from "hono";
 import type { Env } from "../types/env.js";
 import { userPatchValidator } from "../middleware/validators.js";
 import { hash } from "../utils/hash.js";
-import { readFileSync } from "node:fs";
-import { readFile } from "../utils/file.js";
 
 const user = new Hono<Env>();
 
