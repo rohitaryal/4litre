@@ -1,7 +1,7 @@
 import { createMiddleware } from "hono/factory";
 import { getCookie } from "../utils/cookie.js";
 import type { Env } from "../types/env.js";
-import type { AuthorizedUser } from "../types/user.js";
+import type { UserContext } from "../types/user.js";
 
 // Check for authentication
 const checkAuth = createMiddleware<Env>(async (c, next) => {
@@ -21,15 +21,14 @@ const checkAuth = createMiddleware<Env>(async (c, next) => {
 
         const userResult = await sql`SELECT * FROM users WHERE username=${activeSessions[0].username}`
 
-        // TODO: Putting forced type here, its missing other types.
-        //       Add them all once the database is ready
-        c.set("userContext", userResult[0] as AuthorizedUser);
+        c.set("userContext", userResult[0] as UserContext);
 
         return await next();
     } catch (err) {
         return c.json({ error: "Something went wrong!" })
     }
 });
+
 
 // If we have working cookie, just redirect from endpoints like `/login`, `/signup`
 const redirectIfLoggedIn = createMiddleware<Env>(async (c, next) => {
