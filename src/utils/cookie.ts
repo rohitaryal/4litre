@@ -34,10 +34,10 @@ const setCookie = (name: string, value: string, options?: CookieOptions): string
         cookie = `${cookie} SameSite=Lax;`
 
     if (options?.maxAge)
-        cookie = `${cookie} Max-Age: ${options.maxAge};`
+        cookie = `${cookie} Max-Age=${options.maxAge};`
 
     if (options?.expires)
-        cookie = `${cookie} Expires: ${options.expires};`
+        cookie = `${cookie} Expires=${options.expires};`
 
     return cookie;
 }
