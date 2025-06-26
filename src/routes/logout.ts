@@ -5,7 +5,7 @@ import { setCookie } from "../utils/cookie.js";
 const logout = new Hono<Env>();
 
 logout.all((c) => {
-    c.res.headers.set("Set-Cookie", setCookie("session", "", {
+    c.res.headers.set("Set-Cookie", setCookie("session", "nothing-here", {
         expires: new Date(),
         maxAge: 0,
         secure: true,
