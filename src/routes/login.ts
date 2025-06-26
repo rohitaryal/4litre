@@ -10,6 +10,10 @@ import { readFile } from "../utils/file.js";
 const login = new Hono<Env>();
 login.use(redirectIfLoggedIn);
 
+// TODO: This is wrong in the first place,
+//      We need to make a form instead of json submission
+//      so that browser can follow the request instead of us
+//      manually doing `location.reload()` after logging in
 login.post("/", loginValidator, async (c) => {
     const json = await c.req.json();
     const sql = c.get("sqlContext");
