@@ -3,7 +3,7 @@ import type { Env } from "../types/env.js";
 
 const file = new Hono<Env>();
 
-// Returns all the user files
+// Returns all the user files or only file of given status if status is provided
 file.get("/:filestatus?", async (c) => {
     const user = c.get("userContext");
     const sql = c.get("sqlContext");
@@ -17,6 +17,27 @@ file.get("/:filestatus?", async (c) => {
         return c.json({ error: "Something went wrong" }, 500);
     }
 });
+
+file.post("/upload", async (c) => {
+    const user = c.get("userContext");
+    const sql = c.get("sqlContext");
+
+    const body = await c.req.parseBody();
+
+    // A file has following properties
+    // though it shows the property doesn't exist error.
+    const file = body['file'];
+    if (typeof file == "string") {
+        return c.json(401);
+    }
+
+    const fileSize = file.size;
+    const fileType = file.type;
+    const fileName = file.name;
+    const lastModified = file.lastModified;
+
+    return c.text("OK NICE");
+})
 
 // Don't get confused, this is delete method
 file.delete("/:fileid", async (c) => {
