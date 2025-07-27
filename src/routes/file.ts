@@ -1,5 +1,7 @@
+import fs from "fs";
 import { Hono } from "hono";
 import type { Env } from "../types/env.js";
+import path from "path";
 
 const file = new Hono<Env>();
 
@@ -26,15 +28,25 @@ file.post("/upload", async (c) => {
 
     // A file has following properties
     // though it shows the property doesn't exist error.
+    // size, type, name, lastModified
     const file = body['file'];
-    if (typeof file == "string") {
-        return c.json(401);
+    if (typeof file == "string" || !file) {
+        return c.json({ "error": "Invalid File" });
     }
 
-    const fileSize = file.size;
-    const fileType = file.type;
-    const fileName = file.name;
-    const lastModified = file.lastModified;
+    const arrayBuffer = await file.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+
+    const uploadPath = path.join("upload", user.username, path.basename(file.name));
+
+    fs.writeFileSync(uploadPath, buffer);
+
+    // TODO: Do the thing
+    try {
+        const dbResult = await sql``
+    } catch (err) {
+        return c.json({ error: err })
+    }
 
     return c.text("OK NICE");
 })
