@@ -1,0 +1,33 @@
+.inputBoxContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: .5em;
+    border: 2px dotted var(--color-dim);
+    transition-duration: .4s;
+}
+
+.inputBoxContainer:has(input:focus) {
+    border: 2px dotted var(--color-primary);
+}
+
+.inputBoxContainer:has(input:focus) .icon {
+    stroke: var(--color-primary)
+}
+
+.inputBoxContainer input {
+    flex: 1;
+    outline: none;
+    padding: 1rem 1rem 1rem 0;
+    border: none;
+    background-color: transparent;
+}
+
+.inputBoxContainer input::placeholder {
+    color: var(--color-dim);
+}
+
+.icon {
+    stroke: var(--color-dim);
+    margin: .6em .8em .5em .8em;
+}

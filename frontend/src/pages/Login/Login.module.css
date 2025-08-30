@@ -1,0 +1,87 @@
+.loginContainer {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    background-color: transparent;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.loginContainer>div {
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.loginText {
+    font-size: 1.5em;
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.loginText span {
+    font-weight: bolder;
+    color: var(--color-primary);
+}
+
+.loginContainerLeft {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainer form button[type="submit"] {
+    padding: 1em;
+    width: 100%;
+    border-radius: .5em;
+    cursor: pointer;
+    font-weight: bold;
+    transition-duration: .1s;
+    border: 1px solid var(--color-dim);
+    box-shadow: 1px 1px 2px var(--color-dim);
+}
+
+.loginContainer form button[type="submit"]:hover {
+    transform: scale(1.02);
+}
+
+.loginContainerRight {
+    background-image: url(../../assets/login-img8.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.forgotPassword {
+    cursor: pointer;
+    font-weight: bold;
+    margin: 1em 0 .5em 0;
+}
+
+.signUpMsg {
+    color: var(--color-dim);
+}
+
+.signUpMsg span {
+    cursor: pointer;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .loginContainer {
+        grid-template-columns: 1fr;
+    }
+
+    .loginContainerRight {
+        display: none;
+    }
+}

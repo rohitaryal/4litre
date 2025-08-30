@@ -6,6 +6,7 @@
   --color-text: #111827;
   --color-secondary: #fbbf24;
   --color-muted: #00000018;
+  --color-dim: #0000007e;
 }
 
 [data-theme="dark"] {
@@ -20,6 +21,10 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: var(--color-text);
 }
 
 body {
