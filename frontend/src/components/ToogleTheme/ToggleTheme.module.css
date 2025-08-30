@@ -1,0 +1,6 @@
+.themeToggleButton {
+    padding: 1em;
+    border: none;
+    background-color: transparent;
+    color: var(--color-text);
+}

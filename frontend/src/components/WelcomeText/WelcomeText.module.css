@@ -1,0 +1,11 @@
+.welcomeText {
+    color: var(--color-text);
+    user-select: none;
+}
+
+.welcomeText4litre {
+    color: #40c0fb;
+    padding: .5em;
+    border-radius: .5em;
+    background-color: var(--color-muted);
+}
