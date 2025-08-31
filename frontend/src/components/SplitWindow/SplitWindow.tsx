@@ -1,5 +1,6 @@
 import { useEffect, type ReactNode } from "react";
 import styles from "./SplitWindow.module.css"
+import { ToggleTheme } from "../ToogleTheme/ToggleTheme";
 
 type SplitWindow = {
     title: string;
@@ -15,6 +16,12 @@ const SplitWindow = function (props: SplitWindow) {
     return (
         <div className={styles.loginContainer}>
             <div className={styles.loginContainerLeft}>
+                <ToggleTheme style={{
+                    position: "absolute",
+                    top: 0,
+                    right: 0,
+                    stroke: "green",
+                }} />
                 {props.children}
             </div>
             <div
