@@ -5,7 +5,7 @@ import styles from "./ToggleTheme.module.css";
 type Theme = "light" | "dark";
 type ToggleThemeProps = { style?: React.CSSProperties };
 
-const getDefaultTheme = function () {
+export const getSavedTheme = function () {
     const savedTheme = localStorage.getItem("theme") as Theme | null;
     const preferredTheme: Theme = window.matchMedia("(prefers-color-scheme: dark)") ? "dark" : "light";
 
@@ -16,8 +16,8 @@ const getDefaultTheme = function () {
     return preferredTheme;
 }
 
-const ToogleTheme = function ({ style }: ToggleThemeProps) {
-    const [theme, setTheme] = useState<Theme>(getDefaultTheme);
+export const ToggleTheme = function ({ style }: ToggleThemeProps) {
+    const [theme, setTheme] = useState<Theme>(getSavedTheme);
     const otherTheme = theme == "dark" ? "light" : "dark";
 
     useEffect(() => {
@@ -36,5 +36,3 @@ const ToogleTheme = function ({ style }: ToggleThemeProps) {
         </button>
     )
 }
-
-export default ToogleTheme;
