@@ -3,4 +3,8 @@
     border: none;
     background-color: transparent;
     color: var(--color-text);
+    cursor: pointer;
+    height: 4em;
+    width: 4em;
+    text-align: center;
 }
