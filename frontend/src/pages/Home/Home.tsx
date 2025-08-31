@@ -3,6 +3,7 @@ import { ToggleTheme } from "../../components/ToogleTheme/ToggleTheme"
 import WelcomeText from "../../components/WelcomeText/WelcomeText"
 import useFetch from "../../hooks/useFetch"
 import { useEffect } from "react";
+import Logout from "../../components/Logout/Logout";
 
 const Home = function () {
     const { result, error } = useFetch("http://localhost:3000", { credentials: "include" });
@@ -12,11 +13,16 @@ const Home = function () {
         if ((result && !result.loggedIn) || error) {
             navigate("/login");
         }
-    }, [result, navigate]);
+    }, [result]);
 
     return (
         <>
             <WelcomeText />
+            <Logout style={{
+                position: "absolute",
+                top: 0,
+                right: "4em",
+            }} />
             <ToggleTheme style={{
                 position: "absolute",
                 top: 0,
