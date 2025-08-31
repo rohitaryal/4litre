@@ -1,0 +1,49 @@
+.loginContainer {
+    display: grid;
+    height: 100vh;
+    width: 100vw;
+    overflow: hidden;
+    background-color: transparent;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.loginContainer>div {
+    /* border: 1px solid black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.loginContainerLeft {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loginContainerLeft::after {
+    content: "";
+    filter: blur(5px);
+    position: absolute;
+    height: 10em;
+    width: 10em;
+    display: block;
+    /* background-color: var(--color-primary); */
+    bottom: 0;
+    left: 0;
+    z-index: -1;
+    will-change: transform;
+    background-image: url(../../assets/4litre256.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.loginContainerRight {
+    background-image: url(../../assets/login-img8.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
