@@ -26,11 +26,12 @@ const Logout = function (props: LogoutProps) {
 
     return (
         <button
+            title="Log out"
             onClick={handleClick}
             ref={buttonRef}
             style={props.style}
             className={styles.logoutButton}>
-            <FiLogOut size={"2em"} />
+            <FiLogOut size="2em" />
         </button>
     )
 }

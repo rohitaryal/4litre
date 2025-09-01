@@ -7,4 +7,11 @@
     height: 4em;
     width: 4em;
     text-align: center;
+    will-change: background-color;
+    transition-duration: .1s;
+    border-radius: 100%;
+}
+
+.logoutButton:hover {
+    background-color: tomato;
 }
