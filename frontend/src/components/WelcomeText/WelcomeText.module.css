@@ -1,12 +1,21 @@
 .welcomeText {
     color: var(--color-text);
     user-select: none;
+    padding: 1em;
+    width: fit-content;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .1s;
+}
+
+.welcomeText:active {
+    transform: scale(.98);
 }
 
 .welcomeText4litre {
-    color: #40c0fb;
+    color: var(--color-primary);
     padding: .5em;
     border-radius: .5em;
-    font-weight: bolder;
+    font-weight: 900;
     background-color: var(--color-muted);
 }
