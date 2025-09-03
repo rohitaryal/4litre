@@ -67,11 +67,13 @@ const FileUpload = function () {
                                     fileIcons[file.type] || fileIcons["default"]
                                 }
                                 <span className={styles.fileName}>
-                                    {file.name}
+                                    {file.name.length > 20 ? file.name.slice(0, 20) + "..." : file.name}
                                 </span>
                                 <span className={styles.fileSize}>
                                     {formatSize(file.size)}
                                 </span>
+
+                                <progress max="100" value={Math.random() * 100}></progress>
                             </span>
                         )
                     })
