@@ -78,6 +78,7 @@
 }
 
 .fileSize {
+    margin-top: auto;
     color: var(--color-dim);
     /* font-weight: bold; */
 }
