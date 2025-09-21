@@ -27,6 +27,10 @@ const FileUpload = function () {
         return (size / (1024 ** 2)).toFixed(2) + " MB";
     }
 
+    const handleUpload = function () {
+        
+    }
+
     return (
         <>
             <form
@@ -51,6 +55,14 @@ const FileUpload = function () {
                     onChange={handleChange}
                 />
             </form>
+            {files.length > 0 && (
+                <button
+                    className={styles.uploadButton}
+                    onClick={handleUpload}
+                >Upload
+                </button>
+            )
+            }
             <div className={styles.uploadedItems}>
                 {
                     files.map(file => {
